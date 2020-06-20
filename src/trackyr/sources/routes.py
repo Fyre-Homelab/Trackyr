@@ -6,7 +6,7 @@ from trackyr.sources.forms import SourceForm
 
 import lib.core.source as prime
 from lib.core.state import State
-
+import lib.utils.logger as log
 sources = Blueprint('sources', __name__)
 
 @sources.route("/sources/create", methods=['GET', 'POST'])
@@ -16,8 +16,8 @@ def create_source():
     if form.validate_on_submit():
         if form.test.data:
             web_url=form.website.data
-
-            Dict = {1: 'kijiji'}
+            log.info_print(f"web_url: {web_url}")
+            Dict = {1: 'kijiji', 2: 'zwillow'}
 
             prime_source = prime.Source(module=Dict.get(form.module.data), module_properties={'url':web_url,'botname':"prime"})
 
@@ -34,6 +34,7 @@ def create_source():
                 flash(message, "notification")
 
         else:
+            log.info_print(f"website: {form.website.data}")
             source = Source(module=form.module.data,
                             name=form.name.data,
                             website=form.website.data,
