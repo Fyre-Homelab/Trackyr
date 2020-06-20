@@ -322,10 +322,11 @@ def test_source(source):
 
 def test_webui_source(source):
     from lib.core.state import State
+    log.info_print(f"[1]")
     modules = State.get_source_modules()
-
+    log.info_print(f"[2]")
     module = modules[source.module]
-
+    log.info_print(f"[3]")
     return scrape(
             source,
             None,
@@ -349,14 +350,16 @@ def scrape(
         save_ads=True,
         ignore_old_ads=False
     ):
-
+    log.info_print(f"[4]")
     from lib.core.state import State
     import lib.core.notif_agent as notif_agent
 
     ads = State.get_ads()
+    log.info_print(f"[5]")
     source_modules = State.get_source_modules()
+    log.info_print(f"[6]")
     notif_agent_modules = State.get_notif_agent_modules()
-
+    log.info_print(f"[7]")
     log.info_print(f"Source: {source.name}")
     log.info_print(f"Module: {source.module}")
     log.info_print(f"Module Properties: {source.module_properties}")
