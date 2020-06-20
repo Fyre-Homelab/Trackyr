@@ -324,9 +324,9 @@ def test_webui_source(source):
     from lib.core.state import State
     log.info_print(f"[1]")
     modules = State.get_source_modules()
-    log.info_print(f"[2]")
+    log.info_print(f"[2] {modules}")
     module = modules[source.module]
-    log.info_print(f"[3]")
+    log.info_print(f"[3] {module}")
     return scrape(
             source,
             None,
