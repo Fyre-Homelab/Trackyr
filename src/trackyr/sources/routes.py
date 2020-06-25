@@ -16,22 +16,19 @@ def create_source():
     if form.validate_on_submit():
         if form.test.data:
             web_url=form.website.data
-            log.info_print(f"weburl: {web_url}")
-            Dict = {1: 'kijiji', 2: 'zwillow'}
+            Dict = {1: 'kijiji', 2: 'zillow'}
 
             prime_source = prime.Source(module=Dict.get(form.module.data), module_properties={'url':web_url,'botname':"prime"})
-            log.info_print(f"prime_source: {prime_source}")
+
             try:
                 total_ads = prime.test_webui_source(prime_source).total_new_ads
                 log.info_print(f"total_ads: {total_ads}")
             except:
-                log.info_print(f"exception")
                 message = "Not a valid source"
             else:
                 message = f"Found {total_ads} new ads" \
                     if total_ads != 1 else "Found 1 new ad"
             finally:
-                log.info_print(f"finally")
                 if web_url == "":
                     message = "Not a valid source"
                 flash(message, "notification")

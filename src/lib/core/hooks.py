@@ -100,6 +100,8 @@ def to_new_core_source(source_model):
     module = 0
     if s.module == 1:
         module = "kijiji"
+    elif s.module == 2:
+        module = "zillow"
 
     module_properties = {
         "url": s.website

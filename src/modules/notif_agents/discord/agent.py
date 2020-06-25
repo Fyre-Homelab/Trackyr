@@ -83,32 +83,78 @@ class DiscordClient():
         try:
             embed.title = f"{ad_dict[ad_id]['Title']}"
 
-            if ad_dict[ad_id]['Location'] != "":
-                location=ad_dict[ad_id]['Location']
-                location_trunct=(location[:100] + '..') if len(location) > 100 else location
-                embed.add_field(name="Location", value=location_trunct)
+            try:
+                if ad_dict[ad_id]['Location'] != "":
+                    location=ad_dict[ad_id]['Location']
+                    location_trunct=(location[:100] + '..') if len(location) > 100 else location
+                    embed.add_field(name="Location", value=location_trunct)
+            except Exception as e:
+                pass
 
-            if ad_dict[ad_id]['Date'] != "":
-                date=ad_dict[ad_id]['Date']
-                date_trunct=(date[:75] + '..') if len(date) > 75 else date
-                embed.add_field(name="Date", value=date_trunct)
+            try:
+                if ad_dict[ad_id]['Date'] != "":
+                    date=ad_dict[ad_id]['Date']
+                    date_trunct=(date[:75] + '..') if len(date) > 75 else date
+                    embed.add_field(name="Date", value=date_trunct)
+            except Exception as e:
+                pass
 
-            if ad_dict[ad_id]['Price'] != "":
-                price=ad_dict[ad_id]['Price']
-                price_trunct=(price[:25] + '..') if len(price) > 25 else price
-                embed.add_field(name="Price", value=price_trunct)
+            try:
+                if ad_dict[ad_id]['Price'] != "":
+                    price=ad_dict[ad_id]['Price']
+                    price_trunct=(price[:25] + '..') if len(price) > 25 else price
+                    embed.add_field(name="Price", value=price_trunct)
+            except Exception as e:
+                pass
 
-            if ad_dict[ad_id]['Description'] != "":
-                description=ad_dict[ad_id]['Description']
-                description_trunct=(description[:500] + '..') if len(description) > 500 else description
-                embed.add_field(name="Description", value=description_trunct, inline=False)
+            try:
+                if ad_dict[ad_id]['Description'] != "":
+                    description=ad_dict[ad_id]['Description']
+                    description_trunct=(description[:500] + '..') if len(description) > 500 else description
+                    embed.add_field(name="Description", value=description_trunct, inline=False)
+            except Exception as e:
+                pass
 
-            if ad_dict[ad_id]['Details'] != "":
-                details=ad_dict[ad_id]['Details']
-                details_trunct=(details[:100] + '..') if len(details) > 100 else details
-                embed.add_field(name="Details", value=details_trunct, inline=False)
+            try:
+                if ad_dict[ad_id]['Details'] != "":
+                    details=ad_dict[ad_id]['Details']
+                    details_trunct=(details[:100] + '..') if len(details) > 100 else details
+                    embed.add_field(name="Details", value=details_trunct, inline=False)
+            except Exception as e:
+                pass
+
+            try:
+                if ad_dict[ad_id]['Bedrooms'] != "":
+                    bedrooms=ad_dict[ad_id]['Bedrooms']
+                    bedrooms_trunct=(bedrooms[:5] + '..') if len(bedrooms) > 5 else bedrooms
+                    embed.add_field(name="Bedrooms", value=bedrooms_trunct)
+            except Exception as e:
+                pass
+
+            try:
+                if ad_dict[ad_id]['Bathrooms'] != "":
+                    bathrooms=ad_dict[ad_id]['Bathrooms']
+                    bathrooms_trunct=(bathrooms[:5] + '..') if len(bathrooms) > 5 else bathrooms
+                    embed.add_field(name="Bathrooms", value=bathrooms_trunct)
+            except Exception as e:
+                pass
+
+            try:
+                if ad_dict[ad_id]['SquareFootage'] != "":
+                    sqft=ad_dict[ad_id]['SquareFootage']
+                    sqft_trunct=(sqft[:10] + '..') if len(sqft) > 10 else sqft
+                    embed.add_field(name="Square Footage", value=sqft_trunct)
+            except Exception as e:
+                pass
+
+            try:
+                if ad_dict[ad_id]['Image'] != "":
+                    img=ad_dict[ad_id]['Image']
+                    embed.set_image(url=img)
+            except Exception as e:
+                pass
 
         except KeyError:
-            embed.title = f"{ad_dict[ad_id]['Title']}"
+            pass
 
         return embed
