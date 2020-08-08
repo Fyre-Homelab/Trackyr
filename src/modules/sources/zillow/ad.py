@@ -16,8 +16,9 @@ class ZillowAd():
         self.info["Title"] = self.ad.find('a', {"class": "list-card-link"}).text.strip()
 
         try:
-            self.info["Image"] = self.ad.find('img').get('src')
-        except:
+            for link in self.ad.find_all('img'):
+                if ".jpg" in link['src']:
+                    self.info["Image"] = link['src']        except:
             self.info["Image"] = ""
 
         self.info["Url"] = self.ad.find('a', {"class": "list-card-link"}).get('href')
