@@ -14,14 +14,16 @@ class ZillowAd():
     def __locate_info(self):
         # Locate ad information
         self.info["Title"] = self.ad.find('a', {"class": "list-card-link"}).text.strip()
-
+        
         try:
             for link in self.ad.find_all('img'):
                 if ".jpg" in link['src']:
-                    self.info["Image"] = link['src']        except:
+                    self.info["Image"] = link['src']
+        except:
             self.info["Image"] = ""
 
         self.info["Url"] = self.ad.find('a', {"class": "list-card-link"}).get('href')
+        
         try:
             self.info["Bedrooms"] =  self.ad.find('ul', {"class": "list-card-details"}).select('ul > li')[0].get_text(strip=True)[:-3]
         except:
