@@ -78,7 +78,7 @@ class ZillowScraper():
 
     def find_ads(self, soup):
         # Finds all ad trees in page html.
-        zillow_ads = soup.find_all("article", {"class": "list-card list-card-short list-card_not-saved"})
+        zillow_ads = soup.find_all("article", {"class": "list-card list-card_not-saved"})
 
         # Create a dictionary of all ads with ad id being the key
         for ad in zillow_ads:
