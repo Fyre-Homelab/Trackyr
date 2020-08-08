@@ -120,6 +120,8 @@ def to_new_source_model(core_source):
     module = 0
     if c.module == "kijiji":
         module = 1
+    elif c.module == "zillow":
+        module = 2
 
     m = models.Source()
     m.id = c.id
@@ -135,7 +137,9 @@ def to_existing_source_model(core_source, source_model):
     module = 0
     if c.module == "kijiji":
         module = 1
-
+    elif c.module == "zillow":
+        module = 2
+        
     m.id = c.id
     m.name = c.name
     m.module = module
