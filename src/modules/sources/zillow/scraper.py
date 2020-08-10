@@ -1,4 +1,4 @@
-#s!/usr/bin/env python3
+#!/usr/bin/env python3
 
 import  os
 import requests
@@ -38,7 +38,7 @@ class ZillowScraper():
 
         url = kwargs["url"]
         title = None
-
+        log.info_print(f"url 1: {url}")
         while url:
             # Get the html data from the URL
             req_headers = {
@@ -61,19 +61,19 @@ class ZillowScraper():
 
             # Set url for next page of ads
             url = soup.find('a', {'title': 'Next page'})
-#            log.info_print(f"url: {url}")
-
+            disabled = True
             try:
-                disabled = True
+                disabled_state = url['disabled']
             except:
                 disabled = False
 
             if url:
                 if disabled:
+                    log.info_print(f"if disabled: {disabled}")
                     break
                 else:
                     url = 'https://www.zillow.com' + url['href']
-
+                    log.info_print(f"new url: {url}")
         return self.new_ads, title
 
     def find_ads(self, soup):
